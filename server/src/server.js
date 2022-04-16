@@ -1,7 +1,5 @@
 import express from "express"
-import knex from 'knex';
 import 'dotenv/config'
-import knexConfig from "./db/knexfile.js";
 
 // routes
 // import authRoutes from './routes/authRoutes.js';
