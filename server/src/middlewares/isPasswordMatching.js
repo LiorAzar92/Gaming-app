@@ -1,5 +1,3 @@
-
-
 const isPasswordMatching = (req, res, next) => {
     const { password, checkPassword } = req.body;
     if (password !== checkPassword) {

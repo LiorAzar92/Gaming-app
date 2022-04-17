@@ -1,7 +1,6 @@
 import User from "../models/User.js";
 import { StatusCodes } from 'http-status-codes';
 
-
 const register = async (req, res) => {
     const { firstName, lastName, nickname, email, password, checkPassword } = req.body;
     const user = await User.create({ firstName, lastName, nickname, email, password, checkPassword })
@@ -13,8 +12,6 @@ const register = async (req, res) => {
         token
     });
 }
-
-
 
 const login = async (req, res) => {
     const { email, password } = req.body;
