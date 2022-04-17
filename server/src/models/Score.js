@@ -8,6 +8,10 @@ const Score = db.define('Score', {
         allowNull: false,
         primaryKey: true,
     },
+    userId: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     nickname: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -16,12 +20,12 @@ const Score = db.define('Score', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-    }
 
-})
+},
+    {
+        updatedAt: false
+    }
+)
 
 await Score.sync({ alter: true });
 
