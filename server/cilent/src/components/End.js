@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
-import { formatTime } from '../utils';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { formatTime } from "../utils";
 
 const End = ({ results, data, onReset, onAnswersCheck, time }) => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -8,7 +8,7 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
   useEffect(() => {
     let correct = 0;
     results.forEach((result, index) => {
-      if(result.a === data[index].answer) {
+      if (result.a === data[index].answer) {
         correct++;
       }
     });
@@ -16,20 +16,33 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
     // eslint-disable-next-line
   }, []);
 
-  return(
+  return (
     <div className="card">
       <div className="card-content">
         <div className="content">
           <h3>Your results</h3>
-          <p>{correctAnswers} of {data.length}</p>
-          <p><strong>{Math.floor((correctAnswers / data.length) * 100)}%</strong></p>
-          <p><strong>Your time:</strong> {formatTime(time)}</p>
-          <button className="button is-info mr-2" onClick={onAnswersCheck}>Check your answers</button>
-          <button className="button is-success" onClick={onReset}>Try again</button>
+          <p>
+            {correctAnswers} of {data.length}
+          </p>
+          <p>
+            <strong>{Math.floor((correctAnswers / data.length) * 100)}%</strong>
+          </p>
+          <p>
+            <strong>Your time:</strong> {formatTime(time)}
+          </p>
+          <button className="button is-info mr-2" onClick={onAnswersCheck}>
+            Check your answers
+          </button>
+          <button className="button is-success" onClick={onReset}>
+            Try again
+          </button>
+          <Link className="button is-info mr-2" to="/results">
+            Check who's the best
+          </Link>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default End;
