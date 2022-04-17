@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
+import 'dotenv/config';
 
-const db = new Sequelize('gaming_app', 'postgres', '6717789d', {
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: 'localhost',
     dialect: 'postgres',
 
