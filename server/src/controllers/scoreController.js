@@ -13,7 +13,7 @@ const lastScore = async (req, res) => {
     const { id: userId } = req.params;
     const latestScore = await Score.findOne({
         where: { userId },
-        order: [['createdAt', 'ASC']],
+        order: [['createdAt', 'DESC']],
     })
     res
         .status(StatusCodes.OK)
