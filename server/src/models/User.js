@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 // import validator from 'validator';
 
-
 const User = db.define('User', {
     id: {
         type: Sequelize.UUID,
@@ -46,6 +45,15 @@ User.beforeCreate(async (user) => {
     const hashedPassword = await bcrypt.hash(user.password, await bcrypt.genSalt(10));
     user.password = hashedPassword;
 })
+
+//compare passwords
+User.prototype.validPassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+}
+//
+User.prototype.createJWT = function () {
+    return jwt.sign({ userId: this.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME })
+}
 
 await User.sync({ alter: true });
 

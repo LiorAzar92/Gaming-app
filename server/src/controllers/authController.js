@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import { StatusCodes } from 'http-status-codes';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs'
 
 const register = async (req, res) => {
     const { name, email, password } = req.body;
@@ -9,7 +10,7 @@ const register = async (req, res) => {
         throw new Error('Please provide all values')
     }
     const user = await User.create({ name, email, password })
-    const token = jwt.sign({ id: User.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME });
+    const token = user.createJWT();
     res.status(StatusCodes.CREATED).json({
         user: {
             email: user.email,
@@ -30,11 +31,11 @@ const login = async (req, res) => {
     if (!user) {
         throw new Error('Invalid Credentials')
     }
-    const isPasswordCorrect = await user.comparePassword(password);
+    const isPasswordCorrect = await user.validPassword(password);
     if (!isPasswordCorrect) {
         throw new Error('Invalid Credentials')
     }
-    const token = jwt.sign({ id: User.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME });
+    const token = user.createJWT();
     user.password = undefined;
     res.status(StatusCodes.OK).json({ user, token });
 }
