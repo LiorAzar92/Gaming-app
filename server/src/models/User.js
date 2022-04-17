@@ -23,15 +23,22 @@ const User = db.define('User', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    name: {
+    checkPassword: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    createdAt: {
-        type: Sequelize.DATE
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
-    updatedAt: {
-        type: Sequelize.DATE
+    lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    nickname: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
     }
 },
     {
@@ -44,6 +51,7 @@ const User = db.define('User', {
 User.beforeCreate(async (user) => {
     const hashedPassword = await bcrypt.hash(user.password, await bcrypt.genSalt(10));
     user.password = hashedPassword;
+    user.checkPassword = hashedPassword;
 })
 
 //compare passwords
