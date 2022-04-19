@@ -50,10 +50,8 @@ const AppProvider = ({ children }) => {
   const setUpUser = async ({ currentUser, endPoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
     try {
-      const URL = "http://localhost:5000/api/v1/auth/";
-      console.log(currentUser);
+      const URL = "http://localhost:5000/api/auth/";
       const { data } = await axios.post(`${URL}${endPoint}`, currentUser);
-
       const { user, token } = data;
       dispatch({
         type: SETUP_USER_SUCCESS,
@@ -68,6 +66,7 @@ const AppProvider = ({ children }) => {
         token,
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: SETUP_USER_ERROR,
         payload: { msg: error.response.data.msg },
