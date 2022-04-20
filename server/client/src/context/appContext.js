@@ -86,14 +86,6 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage();
   };
 
-  const getScores = async () => {
-    const URL = "http://localhost:5000/api/score/";
-    const nickname = user?.nickname;
-    const lastScore = await axios.get(`${URL}lastScore/${nickname}`);
-    const highScore = await axios.get(`${URL}highScore/${nickname}`);
-    return { lastScore, highScore };
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -101,7 +93,6 @@ const AppProvider = ({ children }) => {
         displayAlert,
         setUpUser,
         logoutUser,
-        getScores,
       }}
     >
       {children}
