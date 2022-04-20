@@ -6,6 +6,7 @@ import {
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
+  LOGOUT_USER,
 } from "./actions";
 import reducer from "./reducers";
 
@@ -75,8 +76,15 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    removeUserFromLocalStorage();
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, setUpUser }}>
+    <AppContext.Provider
+      value={{ ...state, displayAlert, setUpUser, logoutUser }}
+    >
       {children}
     </AppContext.Provider>
   );

@@ -1,3 +1,5 @@
+import CustomError from "../error.js";
+
 const validateInput = (req, res, next) => {
   const { firstName, lastName, nickname, email, password, checkPassword } =
     req.body;
@@ -9,7 +11,7 @@ const validateInput = (req, res, next) => {
     !password ||
     !checkPassword
   ) {
-    next(new Error("Please provide all values"));
+    next(new CustomError("Please provide all values"));
   }
   next();
 };
