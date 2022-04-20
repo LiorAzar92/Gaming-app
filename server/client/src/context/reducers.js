@@ -5,7 +5,7 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   LOGOUT_USER,
-  ADD_SCORE,
+  GET_SCORE,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -59,14 +59,7 @@ const reducer = (state, action) => {
       token: null,
     };
   }
-  if (action.type === ADD_SCORE) {
-    return {
-      ...initialState,
-      user: action.payload.user,
-      token: action.payload.token,
-      score: action.payload.score,
-    };
-  }
+
   throw new Error(`no such action : ${action.type}`);
 };
 

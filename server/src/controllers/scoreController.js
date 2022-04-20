@@ -3,9 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import CustomError from "../error.js";
 const addScore = async (req, res) => {
   try {
-    const { nickname, score, userId } = req.body;
-    console.log(userId);
-    const newScore = await Score.create({ nickname, score, userId });
+    const { nickname, score } = req.body;
+    const newScore = await Score.create({ nickname, score });
     res.status(StatusCodes.CREATED).json({
       newScore,
     });
@@ -15,18 +14,19 @@ const addScore = async (req, res) => {
 };
 
 const lastScore = async (req, res) => {
-  const { id: userId } = req.params;
+  const { id: nickname } = req.params;
   const latestScore = await Score.findOne({
-    where: { userId },
+    where: { nickname },
     order: [["createdAt", "DESC"]],
   });
+  console.log(latestScore);
   res.status(StatusCodes.OK).json({ latestScore });
 };
 
 const highScore = async (req, res) => {
-  const { id: userId } = req.params;
+  const { id: nickname } = req.params;
   const latestScore = await Score.findOne({
-    where: { userId },
+    where: { nickname },
     order: [["score", "DESC"]],
   });
   res.status(StatusCodes.OK).json({ latestScore });

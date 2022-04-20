@@ -7,9 +7,7 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
   const { user } = useAppContext();
   const nickname = user?.nickname;
   const id = user?.userId;
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-
-  const score = Math.floor((correctAnswers / data.length) * 100) + "%";
+  const [correctAnswers, setCorrectAnswers] = useState(null);
 
   useEffect(() => {
     let correct = 0;
@@ -22,6 +20,8 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
 
     // eslint-disable-next-line
   }, []);
+
+  const score = Math.floor((correctAnswers / data.length) * 100) + "%";
 
   const addScore = async () => {
     try {
@@ -38,7 +38,9 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
   };
 
   useEffect(() => {
-    addScore();
+    if (correctAnswers !== null) {
+      addScore();
+    }
   }, [addScore]);
 
   return (
