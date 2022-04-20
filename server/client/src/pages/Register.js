@@ -5,7 +5,7 @@ import { useAppContext } from "../context/appContext.js";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
-  name: "",
+  firstName: "",
   lastName: "",
   email: "",
   password: "",
@@ -21,9 +21,9 @@ export default function Register() {
   const { user, isLoading, showAlert, displayAlert, setUpUser } =
     useAppContext();
 
-  useEffect(() => {
-    console.log(setUpUser, user, "setUpUser", "user");
-  }, [setUpUser]);
+  // useEffect(() => {
+  //   console.log(setUpUser, user, "setUpUser", "user");
+  // }, [setUpUser]);
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -35,19 +35,36 @@ export default function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, lastName, email, password, checkPassword, isMember } = values;
+    const {
+      firstName,
+      nickname,
+      lastName,
+      email,
+      password,
+      checkPassword,
+      isMember,
+    } = values;
     if (
       !isMember &&
       (!email ||
         !password ||
+        !nickname ||
         password !== checkPassword ||
-        (!isMember && !name) ||
+        (!isMember && !firstName) ||
         !lastName)
     ) {
       displayAlert();
       return;
     }
-    const currentUser = { name, email, password };
+    const currentUser = {
+      firstName,
+      email,
+      password,
+      checkPassword,
+      nickname,
+      lastName,
+      isMember,
+    };
 
     if (isMember) {
       setUpUser({
@@ -78,12 +95,12 @@ export default function Register() {
         <h3>{values.isMember ? "Login" : "Register"}</h3>
         {showAlert && <Alert />}
 
-        {/* name input */}
+        {/* firstName input */}
         {!values.isMember && (
           <FormRow
             type="text"
-            name="name"
-            value={values.name}
+            name="firstName"
+            value={values.firstName}
             handleChange={handleChange}
           />
         )}

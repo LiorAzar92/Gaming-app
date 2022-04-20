@@ -11,13 +11,17 @@ import db from "./db/database.js";
 import authRoutes from "./routes/authRoutes.js";
 import scoreRoutes from "./routes/scoreRoutes.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import CustomError from "./error.js";
 
 const app = express();
-
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 201, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
-app.use(cors());
+app.use(cors({ ...corsOptions }));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -35,7 +39,7 @@ const startServer = async () => {
       console.log(`Listening on PORT ${process.env.PORT}`);
     });
   } catch (error) {
-    console.log(error);
+    throw new CustomError(error);
   }
 };
 startServer();
