@@ -10,16 +10,16 @@ const Score = db.define(
       allowNull: false,
       primaryKey: true,
     },
-    userId: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
+    // userId: {
+    //   type: Sequelize.STRING,
+    //   allowNull: false,
+    // },
     nickname: {
       type: Sequelize.STRING,
       allowNull: false,
     },
     score: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false,
     },
   },

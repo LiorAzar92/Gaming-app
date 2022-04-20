@@ -78,16 +78,19 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const addScore = async () => {
+  const addScore = async ({ userId, nickname, score }) => {
+    console.log("hola");
     const URL = "http://localhost:5000/api/score/";
-    const { data } = await axios.post(`${URL}addScore`);
-    const { user, token, score } = data;
+    const { response } = await axios.post(`${URL}addScore`, {
+      userId,
+      nickname,
+      score,
+    });
+    console.log("userid:", userId, "nickname:", nickname, "score:", score);
     dispatch({
       type: ADD_SCORE,
       payload: {
-        user,
-        token,
-        score,
+        response,
       },
     });
   };
