@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useAppContext } from "../context/appContext";
 import { formatTime } from "../utils";
 
 const End = ({ results, data, onReset, onAnswersCheck, time }) => {
+  const { addScore } = useAppContext();
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
   useEffect(() => {
@@ -13,9 +14,11 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
       }
     });
     setCorrectAnswers(correct);
+    addScore();
     // eslint-disable-next-line
   }, []);
 
+  const score = Math.floor((correctAnswers / data.length) * 100) + "%";
   return (
     <div className="card">
       <div className="card-content">
@@ -25,7 +28,7 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
             {correctAnswers} of {data.length}
           </p>
           <p>
-            <strong>{Math.floor((correctAnswers / data.length) * 100)}%</strong>
+            <strong>{score}</strong>
           </p>
           <p>
             <strong>Your time:</strong> {formatTime(time)}
@@ -36,9 +39,6 @@ const End = ({ results, data, onReset, onAnswersCheck, time }) => {
           <button className="button is-success" onClick={onReset}>
             Try again
           </button>
-          <Link className="button is-info mr-2" to="/results">
-            Check who's the best
-          </Link>
         </div>
       </div>
     </div>

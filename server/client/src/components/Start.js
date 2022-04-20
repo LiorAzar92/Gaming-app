@@ -11,7 +11,7 @@ const Start = ({ onQuizStart }) => {
             {" "}
             Hey, {user?.nickname}, welcome to the quiz: 📚ISRAEL & ARGENTINA📚
           </h1>
-          <p>Good luck!</p>
+          <p>Good luck! Your last score is xxx and your highest score is xxx</p>
           <button className="button is-info is-medium" onClick={onQuizStart}>
             Start
           </button>

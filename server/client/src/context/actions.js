@@ -6,3 +6,4 @@ export const SETUP_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const SETUP_USER_ERROR = "LOGIN_USER_ERROR";
 
 export const LOGOUT_USER = "LOGOUT_USER";
+export const ADD_SCORE = "ADD_SCORE";

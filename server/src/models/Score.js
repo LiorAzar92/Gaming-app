@@ -1,31 +1,32 @@
-import Sequelize from 'sequelize';
-import db from '../db/database.js';
+import Sequelize from "sequelize";
+import db from "../db/database.js";
 
-const Score = db.define('Score', {
+const Score = db.define(
+  "Score",
+  {
     id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true,
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
     },
     userId: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     nickname: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     score: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
-
-},
-    {
-        updatedAt: false
-    }
-)
+  },
+  {
+    updatedAt: false,
+  }
+);
 
 await Score.sync({ alter: true });
 

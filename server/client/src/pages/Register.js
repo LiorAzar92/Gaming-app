@@ -21,10 +21,6 @@ export default function Register() {
   const { user, isLoading, showAlert, displayAlert, setUpUser } =
     useAppContext();
 
-  // useEffect(() => {
-  //   console.log(setUpUser, user, "setUpUser", "user");
-  // }, [setUpUser]);
-
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };

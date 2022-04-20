@@ -7,6 +7,7 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   LOGOUT_USER,
+  ADD_SCORE,
 } from "./actions";
 import reducer from "./reducers";
 
@@ -20,6 +21,7 @@ const initialState = {
   alertType: "",
   user: user ? JSON.parse(user) : null,
   token: token,
+  score: "",
 };
 
 const AppContext = React.createContext();
@@ -32,7 +34,7 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const addUserToLocalStorage = ({ user, token, location, isAdmin }) => {
+  const addUserToLocalStorage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
   };
@@ -76,6 +78,20 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const addScore = async () => {
+    const URL = "http://localhost:5000/api/score/";
+    const { data } = await axios.post(`${URL}addScore`);
+    const { user, token, score } = data;
+    dispatch({
+      type: ADD_SCORE,
+      payload: {
+        user,
+        token,
+        score,
+      },
+    });
+  };
+
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
@@ -83,7 +99,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, setUpUser, logoutUser }}
+      value={{ ...state, displayAlert, setUpUser, logoutUser, addScore }}
     >
       {children}
     </AppContext.Provider>
