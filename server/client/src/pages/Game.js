@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Start from "../components/Start";
-import Question from "../components/Question";
-import Modal from "../components/Modal";
-import End from "../components/End";
+import { Start, Question, Modal, End } from "../components";
 import quizData from "../data/quiz.json";
 import { useAppContext } from "../context/appContext";
 

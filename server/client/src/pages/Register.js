@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Alert from "../components/Alert";
-import FormRow from "../components/FormRow";
+import { Alert, FormRow } from "../components";
 import { useAppContext } from "../context/appContext.js";
 import { useNavigate } from "react-router-dom";
 import Wrapper from "../assets/RegisterPage";

@@ -6,15 +6,11 @@
   "scripts": {
     "server": "nodemon /src/server.js --ignore client",
     "dev": "nodemon src/server.js",
-    "client": "npm start --prefix client",
-    "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "client": "npm start --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^7.1.0"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
