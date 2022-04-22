@@ -3,6 +3,7 @@ import Alert from "../components/Alert";
 import FormRow from "../components/FormRow";
 import { useAppContext } from "../context/appContext.js";
 import { useNavigate } from "react-router-dom";
+import Wrapper from "../assets/RegisterPage";
 
 const initialState = {
   firstName: "",
@@ -86,9 +87,11 @@ export default function Register() {
   }, [user, navigate]);
 
   return (
-    <form className="App " onSubmit={onSubmit}>
-      <div className="card">
-        <h3>{values.isMember ? "Login" : "Register"}</h3>
+    <Wrapper className="full-page">
+      <form className="form" onSubmit={onSubmit}>
+        <h3 className="login-header">
+          {values.isMember ? "Login" : "Register"}
+        </h3>
         {showAlert && <Alert />}
 
         {/* firstName input */}
@@ -149,7 +152,7 @@ export default function Register() {
             {values.isMember ? "Register" : "Login"}
           </button>
         </p>
-      </div>
-    </form>
+      </form>
+    </Wrapper>
   );
 }

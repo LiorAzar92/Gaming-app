@@ -39,11 +39,23 @@ const Start = ({ onQuizStart }) => {
     <div className="card">
       <div className="card-content">
         <div className="content">
-          <h1> Hey, {nickname}, welcome to the quiz: 📚ISRAEL & ARGENTINA📚</h1>
-          <p>
-            Good luck! Your last score is {lastScore} and your highest score is{" "}
-            {highScore}
-          </p>
+          <h1> Challenge yourself, {nickname}!</h1>
+          {!lastScore ? (
+            ""
+          ) : (
+            <p>
+              <strong>Last score: </strong>
+              {lastScore}
+            </p>
+          )}
+          {highScore ? (
+            <p>
+              <strong>Highest score: </strong>
+              {highScore}
+            </p>
+          ) : (
+            ""
+          )}
           <button className="button is-info is-medium" onClick={onQuizStart}>
             Start
           </button>

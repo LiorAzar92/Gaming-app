@@ -40,7 +40,7 @@ const Game = () => {
   };
   return (
     <>
-      <button type="button" className="dropdown-btn" onClick={logoutUser}>
+      <button type="button" className="btn btn-block" onClick={logoutUser}>
         LOGOUT
       </button>
       <div className="App">
