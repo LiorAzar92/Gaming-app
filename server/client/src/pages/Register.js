@@ -105,6 +105,7 @@ export default function Register() {
         {!values.isMember && (
           <FormRow
             type="text"
+            labelText="last name"
             name="lastName"
             value={values.lastName}
             handleChange={handleChange}
@@ -128,6 +129,7 @@ export default function Register() {
         {!values.isMember && (
           <FormRow
             type="password"
+            labelText="password (again!)"
             name="checkPassword"
             value={values.checkPassword}
             handleChange={handleChange}
