@@ -57,7 +57,10 @@ const Start = ({ onQuizStart }) => {
         <div className="content">
           <h1> Challenge yourself, {nickname}!</h1>
           {postScores()}
-          <button className="button is-info is-medium" onClick={onQuizStart}>
+          <button
+            className="button is-info is-medium mt-4"
+            onClick={onQuizStart}
+          >
             Start
           </button>
         </div>
