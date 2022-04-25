@@ -97,6 +97,7 @@ export default function Register() {
         {!values.isMember && (
           <FormRow
             type="text"
+            labelText="first name"
             name="firstName"
             value={values.firstName}
             handleChange={handleChange}
